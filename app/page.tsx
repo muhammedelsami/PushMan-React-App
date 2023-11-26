@@ -1,95 +1,40 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import Footer from '@/components/Footer'
+import HomePage from './home/page'
+import Link from 'next/link'
+import { useState } from 'react';
+import TopicPage from './topic/page';
+import SettingsPage from './settings/page';
+import TokenPage from './token/page';
 
 export default function Home() {
+
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleMenuClick = (index: number) => {
+    setActiveTab(index);
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+      <header>
+          <h1>PushMan</h1>
+          <Link href={'https://github.com/muhammedelsami'} id='go-to'><i className="fa-brands fa-github fa-xl"></i> </Link>
+          <nav>
+              <Link className={activeTab === 0 ? 'navTab active' : 'navTab'} onClick={() => handleMenuClick(0)} href={''}><i className="fa-solid fa-home"></i>Home</Link>
+              <Link className={activeTab === 1 ? 'navTab active' : 'navTab'} onClick={() => handleMenuClick(1)} href={''}><i className="fa-solid fa-paper-plane"></i>To Topic</Link>
+              <Link className={activeTab === 2 ? 'navTab active' : 'navTab'} onClick={() => handleMenuClick(2)} href={''}><i className="fa-solid fa-share"></i>To Token</Link>
+              <Link className={activeTab === 3 ? 'navTab active' : 'navTab'} onClick={() => handleMenuClick(3)} href={''}><i className="fa-solid fa-gear"></i>Settings</Link>
+          </nav>
+      </header>
+      <>
+        {activeTab === 0 && <HomePage />}
+        {activeTab === 1 && <TopicPage />}
+        {activeTab === 2 && <TokenPage />}
+        {activeTab === 3 && <SettingsPage />}
+      </>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Footer />
+    </>
   )
 }
