@@ -23,7 +23,7 @@ function HomePage() {
         </section>
         <section id='android-app'>
             <div>
-                <img src="screenShots.png" alt="App Screenshot" />
+                <img src="screenshots.png" alt="App Screenshot" />
             </div>
             <div>
                 <img id='qrcode-img' src="qrcode.png" alt="App QR Code" />
