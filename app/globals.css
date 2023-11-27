@@ -98,6 +98,20 @@ section h2 {
   display: block;
 }
 
+#body-img 
+{
+  display: grid;
+  justify-content: center;
+  padding: 20px;
+}
+
+#body-img img {
+  max-width: 100%;
+  height: 60vh;
+  border-radius: 20px;
+  box-shadow: 4px 3px 19px 1px #d9d5ec;
+}
+
 #android-app {
   display: flex;
   justify-content: space-around;
@@ -109,6 +123,8 @@ section h2 {
 #android-app div {
   flex: 1;
   text-align: center;
+  display: grid;
+  justify-content: center;
 }
 
 #android-app img {
@@ -117,7 +133,16 @@ section h2 {
 }
 
 #qrcode-img {
-  width: 200px;
+  width: 215px;
+}
+
+.googlePlay {
+  margin-top: 10px;
+  background: black;
+  padding: 20px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
 }
 
 #about-app {
@@ -266,6 +291,9 @@ button:hover {
       margin: 0px;
       padding: 0px;
   }
+  #android-app {
+      flex-direction: column-reverse;
+  }
 }
 
 
@@ -278,4 +306,5 @@ button:hover {
   nav a i {
       padding-inline-end: 1px;
   }
+
 }
