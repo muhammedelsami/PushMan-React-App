@@ -5,8 +5,10 @@ function SettingsPage() {
 
     const [showServerKeyPopup, setShowServerKeyPopup] = useState(false);
     const [showAboutAppPopup, setShowAboutAppPopup] = useState(false);
-    const [serverKey, setServerKey] = useState(localStorage.getItem('serverKey') || '');
-
+    const [serverKey, setServerKey] = useState(
+        typeof window !== 'undefined' ? localStorage.getItem('serverKey') || '' : ''
+    );
+    
     const handleServerKeyButtonClick = () => {
         setShowServerKeyPopup(true);
     };
@@ -20,12 +22,14 @@ function SettingsPage() {
         setShowAboutAppPopup(false);
     };
 
-    const handleServerKeyChange = (e) => {
+    const handleServerKeyChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setServerKey(e.target.value);
     };
 
     const handleServerKeySave = () => {
-        localStorage.setItem('serverKey', serverKey);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('serverKey', serverKey);
+        }
         setShowServerKeyPopup(false);
     };
 
@@ -54,7 +58,7 @@ function SettingsPage() {
                 {showAboutAppPopup && (
                     <div id='about-app' className='popup'>
                         <h3>PushMan App</h3>
-                        <p>The Firebase Server Key is a tool that provides developers with the capability to send notifications to their applications. This key enables sending real-time notifications to the desired application using the Firebase Cloud Messaging (FCM) service. By using the Firebase Server Key, you can add customized, targeted, and interactive notifications to your application. This allows you to convey important updates to your users, enhance user engagement through interaction, and improve the overall user experience. Thanks to Firebase's reliable infrastructure, your application notifications reach the target audience quickly and reliably, providing users with a better communication experience.</p>
+                        <p>The Firebase Server Key is a tool that provides developers with the capability to send notifications to their applications. This key enables sending real-time notifications to the desired application using the Firebase Cloud Messaging (FCM) service. By using the Firebase Server Key, you can add customized, targeted, and interactive notifications to your application. This allows you to convey important updates to your users, enhance user engagement through interaction, and improve the overall user experience. Thanks to Firebase&apos;s reliable infrastructure, your application notifications reach the target audience quickly and reliably, providing users with a better communication experience.</p>
                         <button onClick={handlePopupClose}>Close</button>
                     </div>
                 )}

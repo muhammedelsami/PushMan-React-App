@@ -7,7 +7,7 @@ import TopicPage from './topic/page';
 import SettingsPage from './settings/page';
 import TokenPage from './token/page';
 
-export default function Home() {
+function Home() {
 
   const [activeTab, setActiveTab] = useState(0);
 
@@ -38,3 +38,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;
